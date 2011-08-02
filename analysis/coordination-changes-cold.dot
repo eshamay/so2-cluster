@@ -1,0 +1,41 @@
+
+digraph NAME {
+	SSO -> SSSO [ label = 2 ];
+	O -> Unbound [ label = 26 ];
+	SSSO -> SSSOO [ label = 2 ];
+	SS -> SSO [ label = 12 ];
+	SSS -> SS [ label = 1 ];
+	SS -> S [ label = 13 ];
+	SO -> SOO [ label = 187 ];
+	SOO -> OO [ label = 1 ];
+	SOO -> SSOO [ label = 10 ];
+	SSO -> SSOO [ label = 11 ];
+	S -> Unbound [ label = 12 ];
+	OO -> O [ label = 2 ];
+	SSOO -> SOO [ label = 11 ];
+	SSO -> SS [ label = 11 ];
+	SSO -> SO [ label = 21 ];
+	SOO -> SSO [ label = 1 ];
+	SSOO -> SSSOO [ label = 1 ];
+	SOO -> SOOO [ label = 26 ];
+	SSOO -> SSO [ label = 10 ];
+	S -> SO [ label = 206 ];
+	SSSO -> SSO [ label = 2 ];
+	SOO -> SO [ label = 184 ];
+	S -> SSO [ label = 1 ];
+	SOOO -> SSOOO [ label = 1 ];
+	S -> SS [ label = 13 ];
+	SOOO -> SO [ label = 1 ];
+	SSOO -> SO [ label = 1 ];
+	O -> OO [ label = 1 ];
+	SO -> O [ label = 2 ];
+	SOOO -> SOO [ label = 24 ];
+	Unbound -> O [ label = 28 ];
+	O -> SO [ label = 6 ];
+	SO -> SSO [ label = 18 ];
+	SSSO -> SSS [ label = 1 ];
+	Unbound -> S [ label = 11 ];
+	SSOOO -> SSOO [ label = 1 ];
+	SO -> S [ label = 210 ];
+	SSSOO -> SSSO [ label = 3 ];
+}
