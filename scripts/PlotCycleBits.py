@@ -56,9 +56,10 @@ def PlotCycleBits(files,hot=None):
 fig = plt.figure(num=1, facecolor='w', edgecolor='w', frameon=True)
 axs = fig.add_subplot(1,1,1)
 
-files_cold = glob.glob('[1-5]/'+sys.argv[1])
-files_hot = glob.glob('[6-9]/'+sys.argv[1])
-files_hot = files_hot + glob.glob('10/'+sys.argv[1])
+files_cold = glob.glob('[1-5]/so2.cyclic-SO-lifespan.dat')
+
+files_hot = glob.glob('[6-9]/so2.cyclic-SO-lifespan.dat')
+files_hot = files_hot + glob.glob('10/so2.cyclic-SO-lifespan.dat')
 
 PlotCycleBits(files_cold)
 PlotCycleBits(files_hot,True)

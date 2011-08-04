@@ -23,8 +23,8 @@ def CoordinationNumberToName (number):
 
 def ConvertNumbers(numbers):
 	# this returns the vanilla S and O values
-	#return [10*(int(n)/100) + (int(n)%10) + (int(n%100)/10) for n in numbers]
-	return numbers
+	return [10*(int(n)/100) + (int(n)%10) + (int(n%100)/10) for n in numbers]
+	#return numbers
 
 	# this gives the total coordination value (1,2,3,4....)
 	#return [(int(n)%10) + (int(n%100)/10) for n in numbers]
@@ -77,7 +77,6 @@ def PrintStats (name, data):
 
 
 new_bins = []
-num_bins = 4
 for i in range(4):
 	for j in range(3):
 		new_bins.append(i + 10*j)

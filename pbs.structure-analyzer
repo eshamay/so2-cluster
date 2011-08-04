@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#PBS -N so2-cluster-md-10
+#PBS -j oe
+#PBS -o so2.pbs.log
+###PBS -m abe
+#PBS -q batch
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=00:10:00
+
+# go to proper location
+cd $PBS_O_WORKDIR
+echo beginning job id $PBS_JOBID '('$PBS_JOBNAME')' on host `hostname`
+
+# get processor info
+NPROCS=`wc -l < $PBS_NODEFILE`
+echo running on $NPROCS processors
+
+time \
+	   structure-analyzer 1 2
