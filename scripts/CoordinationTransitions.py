@@ -78,18 +78,16 @@ def PrintStateChangesDOT(transitions):
 		k = k.split('-')
 		if k[0] == k[1]:
 			continue
-		arrow = 1.0 + 3.0 * v/max_v	# scale the arrowhead to give a sense of higher traffic
-		width = 1.0 + 6.0 * v/max_v
-		#label = 12.0 + v/20.0 - 4.0
-		print "\t" + k[0] + " -> " + k[1] + " [ label = " + str(v) + ", arrowsize = " + str(arrow) + ", penwidth = " + str(width) + " ];" #", fontsize = " + str(label) + " ];"
+		width = 0.2 + 15.0 * v/max_v
+		print "\t%s -> %s [ label=%d, penwidth=%f, fontsize=%d ];" % (k[0], k[1], v,  width, 36)
 
 	return
 
 def PrintNodeSizes(weights):
-	mult = 5.0
+  	weight_max = max(weights.values())
 	for k,v in weights.iteritems():
 		if k.count('O') < 3 and k.count('S') < 3:
-			print "\t%s [ width = %f, height = %f];" % (k, v/mult, v/mult)
+			print "\t%s [ width = %f, height = %f, fontsize=30, style=filled, fillcolor = \"0.0,%f,1.0\" ];" % (k, v*5.0/weight_max, v*5.0/weight_max, v/weight_max)
 
 def ParseTrajectory(trajectory,transitions):
 	prev = -1
@@ -112,5 +110,4 @@ PrintStateChangesDOT(transitions)
 
 weights = GetCoordinationWeights(data)
 PrintNodeSizes(weights)
-print "} [ fontsize = 36 ];"
-
+print " };"
