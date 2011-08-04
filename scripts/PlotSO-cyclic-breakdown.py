@@ -23,10 +23,10 @@ def PlotBarGraph (files,hot=None):
 	#total = float(data[0])
 	total = 100000.0
 	if hot:
-		total = 20000.0*5+18238
+		total = 20000.0*4+18238
 	cycles = data[2:6]
 	#acyclic = (total - data[1])	# time spent acyclic
-	cycles = insert(cycles,0,data[1])	# time spent cyclic out of the SO coordinations
+	cycles = insert(cycles,0,data[1])	# time spent cyclic in the SO coordination
 	#cycles = insert(cycles,0,acyclic)
 	cycles = append(cycles,data[-2:])	# two types of triple-cycles
 	cycles = cycles/total*100.0
@@ -39,9 +39,9 @@ def PlotBarGraph (files,hot=None):
 
 
 #files_cold = glob.glob(sys.argv[1])
-files_cold = glob.glob('[1-5]/'+sys.argv[1]+'*')
-files_hot = glob.glob('[6-9]/'+sys.argv[1]+'*')
-files_hot = files_hot + glob.glob('10/'+sys.argv[1]+'*')
+files_cold = glob.glob('[1-5]/so2.cyclic-SO.dat')
+files_hot = glob.glob('[6-9]/so2.cyclic-SO.dat')
+files_hot = files_hot + glob.glob('10/so2.cyclic-SO.dat')
 
 fig = plt.figure(num=1, facecolor='w', edgecolor='w', frameon=True)
 PlotBarGraph (files_cold)
