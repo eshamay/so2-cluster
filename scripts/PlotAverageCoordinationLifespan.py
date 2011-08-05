@@ -3,7 +3,7 @@ from ColumnDataFile import ColumnDataFile as CDF
 import numpy
 import matplotlib
 from Coordinations import *
-from matplotlib.patches import Circle, Wedge, Polygon
+from matplotlib.patches import Circle, Wedge, Polygon, Ellipse
 from matplotlib.collections import PatchCollection
 import matplotlib.pyplot as plt
 from pylab import *
@@ -72,7 +72,7 @@ def CoordinationLifespanHistograms(lifespans):
 	return histos
 	
 
-def PlotCoordinationLifespanHistograms(lifespans,axs):
+def PlotCoordinationLifespanHistograms(lifespans,axs,offset,clr):
 	histos = CoordinationLifespanHistograms(lifespans)
 
 	# max number of S and Os to look at
@@ -83,38 +83,41 @@ def PlotCoordinationLifespanHistograms(lifespans,axs):
 		#histo,edges = histos[c]
 		if c not in lifespans:
 			continue
-		lives = lifespans[c]
+		lives = [l/1000.0 for l in lifespans[c]]
 		for l in lives:
 		#for h,e in zip(histo,edges):
 			#circle = Circle((n,e), h/10.0)
-			circle = Circle((n,l), 0.2)
-			patches.append(circle)
+			ellipse = Ellipse((n+offset,l), 0.2, 0.05, facecolor=clr, alpha=0.1)
+			patches.append(ellipse)
+			axs.add_patch(ellipse)
 
-	#colors = 100*pylab.rand(len(patches))
-	p = PatchCollection(patches, cmap=matplotlib.cm.jet, alpha=0.6)
-	#p.set_array(pylab.array(colors))
-	axs.add_collection(p)
-
+	#p = PatchCollection(patches, cmap=matplotlib.cm.jet, alpha=0.1)
+	#p.set_array(array(colors))
+	#axs.add_collection(p)
 	return (S+1,O+1)
 	
+def PlotDataSet(data,axs,offset,clr):
+	weights = GetCoordinationWeights(data)
+	lifespans = {}
+	ParseLifespans(data,lifespans)
+	
+	s,o = PlotCoordinationLifespanHistograms(lifespans,axs,offset,clr)
+	return (s,o)
+
 	
 
 cold,hot = LoadFiles()
-data = cold
-weights = GetCoordinationWeights(data)
-lifespans = {}
-ParseLifespans(data,lifespans)
-
-
 fig = plt.figure(num=1, facecolor='w', edgecolor='w', frameon=True)
 axs = fig.add_subplot(111)
-s,o = PlotCoordinationLifespanHistograms(lifespans,axs)
-bins = [c for c in iterCoordinationNames(s,o)]
 
+s,o = PlotDataSet (cold,axs,-0.1,'b')
+s,o = PlotDataSet (hot,axs,0.1,'r')
+
+bins = [c for c in iterCoordinationNames(s,o)]
 xlabel (r'SO$_2$ Coordination', fontsize=46)
-ylabel ('Lifespan / fs', fontsize=46)
+ylabel ('Lifespan / ps', fontsize=46)
 xticks (arange(len(bins)), bins, fontsize=24)
 yticks (fontsize=42)
 xlim(-1,12)
-ylim(0,3500)
+ylim(0,4)
 plt.show()
