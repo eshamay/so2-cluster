@@ -1,0 +1,11 @@
+Values are the percentages of the total trajectories. To find the actual values, divide by 100% and multiply by the 100,000 timesteps
+
+Unbound O 	   OO 		OOO 	S 		SO 		SOO 	SOOO 	SS 	SSO 	SSOO
+
+Cold:
+
+13.0718 4.3920 0.07916 	0.0000 19.5200 37.6612 18.8597 1.3137 1.2806 2.5311 1.2906
+
+Hot:
+
+3.5306 	3.8391 0.2286 	0.0000 14.3037 34.2519 28.2241 4.2461 2.1691 5.7941 3.4127

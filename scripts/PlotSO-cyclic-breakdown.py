@@ -32,8 +32,12 @@ def PlotBarGraph (files,hot=None):
 	cycles = cycles/total*100.0
 
 	if hot:
+		print "hot:"
+		print cycles
 		plt.bar([i+width/2 for i in range(len(cycles))], cycles, width, color='r', align='center')
 	else:
+		print "cold:"
+		print cycles
 		plt.bar([i-width/2 for i in range(len(cycles))], cycles, width, color='b', align='center')
 	
 

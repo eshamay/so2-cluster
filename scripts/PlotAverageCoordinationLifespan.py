@@ -87,7 +87,7 @@ def PlotCoordinationLifespanHistograms(lifespans,axs,offset,clr):
 		for l in lives:
 		#for h,e in zip(histo,edges):
 			#circle = Circle((n,e), h/10.0)
-			ellipse = Ellipse((n+offset,l), 0.2, 0.05, facecolor=clr, alpha=0.1)
+			ellipse = Ellipse((n+offset,l), 0.3, 0.05, facecolor=clr, alpha=0.2)
 			patches.append(ellipse)
 			axs.add_patch(ellipse)
 
@@ -110,8 +110,8 @@ cold,hot = LoadFiles()
 fig = plt.figure(num=1, facecolor='w', edgecolor='w', frameon=True)
 axs = fig.add_subplot(111)
 
-s,o = PlotDataSet (cold,axs,-0.1,'b')
-s,o = PlotDataSet (hot,axs,0.1,'r')
+s,o = PlotDataSet (cold,axs,-0.15,'b')
+s,o = PlotDataSet (hot,axs,0.15,'r')
 
 bins = [c for c in iterCoordinationNames(s,o)]
 xlabel (r'SO$_2$ Coordination', fontsize=46)

@@ -95,8 +95,12 @@ def PlotBarGraph (files,hot=False):
 	histo = histo / histo.sum() * 100.0
 	#axs.plot(range(len(bin_edges[:-1])), histo)
 	if hot:
+		print "hot"
+		print histo
 		plt.bar([i+width/2 for i in range(len(histo))], histo, width, color='r', align='center')
 	else:
+		print "cold"
+		print histo
 		plt.bar([i-width/2 for i in range(len(histo))], histo, width, color='b', align='center')
 
 

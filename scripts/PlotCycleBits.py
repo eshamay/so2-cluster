@@ -27,11 +27,12 @@ def getLifespan(file,axs=None):
 	smooth = Smoothing.window_smooth(numpy.array(data), window_len=40, window='blackman')
 	smooth = smooth - 0.18
 	new_data = numpy.ceil(smooth)
+  	smooth = smooth + 0.18
 
 	if axs:
-		axs.plot(data, linewidth=2.5, color='k', linestyle=':', alpha=0.7)
-		axs.plot(smooth, linewidth=2.0, color='r', linestyle='-', alpha=0.7)
-		axs.plot(new_data, linewidth=3.5, color='g', linestyle='-', alpha=0.8)
+		axs.plot(data[1200:2800], linewidth=2.5, color='k', linestyle=':', alpha=0.7, label=r'$C(t)$')
+		axs.plot(smooth[1200:2800], linewidth=2.0, color='r', linestyle='-', alpha=0.7, label=r'$C_s(t)$')
+		axs.plot(new_data[1200:2800], linewidth=3.5, color='g', linestyle='-', alpha=0.8, label=r'$f(t)$')
 
   	return [c for c in CutUpCycleBits(new_data)]
 
@@ -58,16 +59,24 @@ axs = fig.add_subplot(1,1,1)
 
 files_cold = glob.glob('[1-5]/so2.cyclic-SO-lifespan.dat')
 
+getLifespan (sys.argv[1],axs)
 files_hot = glob.glob('[6-9]/so2.cyclic-SO-lifespan.dat')
 files_hot = files_hot + glob.glob('10/so2.cyclic-SO-lifespan.dat')
 
-PlotCycleBits(files_cold)
-PlotCycleBits(files_hot,True)
-
-xlabel (r'Lifespan of SO$_2$ Cyclic Structure / ps', fontsize=46)
-ylabel ('% of SO$_2$ Cyclic Structures', fontsize=46)
-xticks (arange(len(bns)), bns/1000, fontsize=32)
-yticks (fontsize=42)
 
 
+#PlotCycleBits(files_cold)
+#PlotCycleBits(files_hot,True)
+
+xlabel (r'Time', fontsize=46)
+axs.set_ylim(-0.1,1.2)
+#ylabel ('', fontsize=46)
+#xticks (arange(len(bns)), bns/1000, fontsize=32)
+xticks ([])
+yticks ([0,1],['No Cycle','Cycle'],fontsize=32)
+
+
+PlotUtility.ShowLegend(axs)
+fig.subplots_adjust(top=0.96, bottom=0.15,left=0.3,right=0.96)
+#plt.savefig('analysis/cycle-debouncing.png',dpi=90)
 plt.show()
